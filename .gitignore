@@ -1,0 +1,8 @@
+# Generated output. The pipeline writes cards next to the code and run data
+# one level up; neither belongs in the repo.
+cards/*.png
+*-purchase-cams/
+__pycache__/
+*.pyc
+*.bak*
+test_write.tmp

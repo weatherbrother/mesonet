@@ -1,0 +1,161 @@
+{
+  "_comment": "Hand-written fixture. Timestamps are RELATIVE offsets in minutes, resolved against run time by run_purchase_cams.load_obs. Absolute stamps would make the fixture valid for only a few minutes on one day. Each station sits in a different status state, so every render exercises the whole state space. Run with --offline to use the alerts blocks below instead of live NWS data.",
+  "run_utc": null,
+  "attribution": "Data and camera image: Kentucky Mesonet at WKU",
+  "stations": [
+    {
+      "key": "ballard",
+      "site_id": "XXXX",
+      "county": "Ballard",
+      "place": "5 NE La Center",
+      "_state": "everything clean",
+      "obs": {
+        "status": "ok",
+        "offset_min": -5,
+        "air_temp_f": 91.4,
+        "dewpoint_f": 74.2,
+        "wind_dir_deg": 205,
+        "wind_speed_mph": 9.1,
+        "precip_since_midnight_in": 0.0
+      },
+      "camera": {
+        "status": "ok",
+        "offset_min": -10,
+        "file": "raw/ballard_fixture.jpg"
+      },
+      "alerts": {
+        "status": "ok",
+        "active": [
+          {
+            "event": "Heat Advisory",
+            "severity": "Moderate"
+          }
+        ],
+        "suppress_calm": false
+      }
+    },
+    {
+      "key": "marshall",
+      "site_id": "XXXX",
+      "county": "Marshall",
+      "place": "TBD",
+      "_state": "obs stale past the 15 min limit, camera fine",
+      "obs": {
+        "status": "ok",
+        "offset_min": -105,
+        "air_temp_f": 89.8,
+        "dewpoint_f": 73.6,
+        "wind_dir_deg": 190,
+        "wind_speed_mph": 7.4,
+        "precip_since_midnight_in": 0.0
+      },
+      "camera": {
+        "status": "ok",
+        "offset_min": -15,
+        "file": "raw/marshall_fixture.jpg"
+      },
+      "alerts": {
+        "status": "ok",
+        "active": [
+          {
+            "event": "Heat Advisory",
+            "severity": "Moderate"
+          }
+        ],
+        "suppress_calm": false
+      }
+    },
+    {
+      "key": "graves",
+      "site_id": "PRYB",
+      "county": "Graves",
+      "place": "6 SW Mayfield",
+      "_state": "partial, wind sensor reporting nothing",
+      "obs": {
+        "status": "partial",
+        "offset_min": -5,
+        "air_temp_f": 92.1,
+        "dewpoint_f": 75.0,
+        "wind_dir_deg": null,
+        "wind_speed_mph": null,
+        "precip_since_midnight_in": 0.0,
+        "missing": [
+          "wind_dir_deg",
+          "wind_speed_mph"
+        ]
+      },
+      "camera": {
+        "status": "ok",
+        "offset_min": -10,
+        "file": "raw/graves_fixture.jpg"
+      },
+      "alerts": {
+        "status": "ok",
+        "active": [
+          {
+            "event": "Heat Advisory",
+            "severity": "Moderate"
+          }
+        ],
+        "suppress_calm": false
+      }
+    },
+    {
+      "key": "calloway",
+      "site_id": "XXXX",
+      "county": "Calloway",
+      "place": "TBD",
+      "_state": "obs good, camera dead, and measurable rain today",
+      "obs": {
+        "status": "ok",
+        "offset_min": -5,
+        "air_temp_f": 90.7,
+        "dewpoint_f": 74.8,
+        "wind_dir_deg": 215,
+        "wind_speed_mph": 6.2,
+        "precip_since_midnight_in": 0.14
+      },
+      "camera": {
+        "status": "unavailable",
+        "file": null,
+        "reason": "no image returned"
+      },
+      "alerts": {
+        "status": "ok",
+        "active": [
+          {
+            "event": "Heat Advisory",
+            "severity": "Moderate"
+          }
+        ],
+        "suppress_calm": false
+      }
+    },
+    {
+      "key": "fulton",
+      "site_id": "XXXX",
+      "county": "Fulton",
+      "place": "Hickman",
+      "_state": "total station failure under an active warning, the case that must never render as calm",
+      "obs": {
+        "status": "unavailable",
+        "reason": "fetch failed"
+      },
+      "camera": {
+        "status": "unavailable",
+        "file": null,
+        "reason": "fetch failed"
+      },
+      "alerts": {
+        "status": "ok",
+        "active": [
+          {
+            "event": "Severe Thunderstorm Warning",
+            "severity": "Severe"
+          }
+        ],
+        "suppress_calm": true
+      }
+    }
+  ]
+}

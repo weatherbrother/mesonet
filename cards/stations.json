@@ -1,0 +1,7 @@
+[
+  {"stid":"BAND","county":"Ballard","site":"La Center 5 NNE","lat":37.13,"lon":-88.95,"camera_url":"https://d266k7wxhw6o23.cloudfront.net/camera/BAND/BAND_20260907_1930.jpg","camera_filename":"camera/BAND/BAND_20260907_1930.jpg"},
+  {"stid":"HCKM","county":"Fulton","site":"Hickman 2 E","lat":36.57,"lon":-89.16,"camera_url":"https://d266k7wxhw6o23.cloudfront.net/camera/HCKM/HCKM_20260907_1936.jpg","camera_filename":"camera/HCKM/HCKM_20260907_1936.jpg"},
+  {"stid":"PRYB","county":"Graves","site":"Mayfield 6 SW","lat":36.7,"lon":-88.72,"camera_url":"https://d266k7wxhw6o23.cloudfront.net/camera/PRYB/PRYB_20260907_1931.jpg","camera_filename":"camera/PRYB/PRYB_20260907_1931.jpg"},
+  {"stid":"DRFN","county":"Marshall","site":"Benton 4 N","lat":36.92,"lon":-88.34,"camera_url":"https://d266k7wxhw6o23.cloudfront.net/camera/DRFN/DRFN_20260907_1932.jpg","camera_filename":"camera/DRFN/DRFN_20260907_1932.jpg"},
+  {"stid":"MRRY","county":"Calloway","site":"Murray 1 W","lat":36.61,"lon":-88.34,"camera_url":"https://d266k7wxhw6o23.cloudfront.net/camera/MRRY/MRRY_20260907_1934.jpg","camera_filename":"camera/MRRY/MRRY_20260907_1934.jpg"}
+]
