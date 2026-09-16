@@ -1,0 +1,27 @@
+# Explicit build context for `gcloud run jobs deploy --source .`
+#
+# Without this file gcloud derives one from .gitignore, which excludes
+# cards/*.png. That rule is meant for generated cards, but relying on it here
+# is a trap waiting to spring: one careless broadening and the logo and shield
+# in cards/assets/ vanish from the image and every card renders without them.
+# Name what goes, rather than inheriting what stays.
+
+.git/
+.gitignore
+__pycache__/
+*.pyc
+*.bak*
+
+# generated output, never part of a build. The negation is not decoration:
+# cards/assets/ holds the logo and the shield, and if the rule above is ever
+# broadened to cards/**.png they vanish from the image and every card renders
+# without branding -- a failure that looks like a design change, not a bug.
+cards/*.png
+!cards/assets/**
+*-purchase-cams/
+
+# docs are for humans, not the runtime
+README.md
+DEPLOY.md
+PURCHASE_CAMS_NOTES.md
+TASK_purchase_cams.md

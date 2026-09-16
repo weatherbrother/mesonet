@@ -293,6 +293,7 @@ def main() -> int:
     gaps: list[str] = []       # something went wrong
     pending: list[str] = []    # layer not built yet, expected
     declines: list[tuple[str, str]] = []   # station could not be rendered
+    drive_records: list[dict] = []          # one per file offered to Drive
 
     try:
         run_dir, cards_dir, stamp = make_dirs(args.root, now.astimezone(CT))
@@ -342,11 +343,31 @@ def main() -> int:
         gaps.append("unhandled error, see run.log")
         records, source, cards = [], "none", []
         declines = []
+        drive_records = []
         stamp = f"{now.astimezone(CT):%Y%m%d_%H%M}_"
 
     write_manifest(run_dir, records, source, gaps, cards)
     if log:
         (run_dir / "run.log").write_text("\n".join(log), encoding="utf-8")
+
+    # Copy to Drive. Same optional-module pattern as the fetch layer: a missing
+    # uploader is pending, a refused upload is a gap, and neither is allowed to
+    # invalidate cards that are already on disk. This sits after the manifest
+    # is written so every artifact it offers exists, and before the summary is
+    # composed so an upload failure reaches `status` instead of being announced
+    # under a line that already said clean.
+    drive = optional("km_drive")
+    if not drive:
+        pending.append("km_drive")
+    elif cards and source != "FIXTURE":
+        # Fixture cards are watermarked and must never reach the folder Dallas
+        # posts from.
+        drive_records = drive.upload(
+            drive.collect(run_dir, cards_dir, stamp),
+            day=drive.day_from_run_dir(run_dir))
+        for r in drive_records:
+            if r["status"] == "failed":
+                gaps.append(f"drive upload failed, {r['file']}: {r['reason']}")
 
     # ---- summary: fixed format, short. Verbose detail stays on disk.
     # partial and stale are renderable states, not failures: apply_staleness
@@ -427,6 +448,15 @@ def main() -> int:
     if cards and source == "FIXTURE":
         cardline += ", WATERMARKED FIXTURE, do not post"
     emit(f"built    {cardline}")
+
+    if drive_records:
+        up_ok = sum(1 for r in drive_records if r["status"] == "ok")
+        driveline = f"{up_ok}/{len(drive_records)} uploaded"
+        # One shared reason prints once rather than nine times.
+        for why in sorted({r["reason"] for r in drive_records
+                           if r["status"] != "ok" and r.get("reason")}):
+            driveline += f" | {why}"
+        emit(f"drive    {driveline}")
     if cards:
         emit(f"prefix   {stamp}")
 

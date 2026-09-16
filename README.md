@@ -48,4 +48,5 @@ payload and validates it. `wb_card.py` is the layout, frozen at 1.2.
 `run_purchase_cams.py` is the orchestrator and the only entry point.
 
 Status vocabulary and open items are in `PURCHASE_CAMS_NOTES.md`. The
-scheduled-task contract is in `TASK_purchase_cams.md`.
+scheduled-task contract is in `TASK_purchase_cams.md`. Cloud Run
+deployment, cost and output layout are in `DEPLOY.md`.

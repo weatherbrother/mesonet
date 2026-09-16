@@ -1,0 +1,8 @@
+Pillow>=10,<13
+google-auth>=2.30
+google-api-python-client>=2.130
+# python:3.11-slim ships no system tz database, and wb_card/calm_card_km call
+# ZoneInfo("America/Chicago"). Without this the container raises
+# ZoneInfoNotFoundError on the first render. The PyPI package supplies the data
+# that Debian slim leaves out.
+tzdata
